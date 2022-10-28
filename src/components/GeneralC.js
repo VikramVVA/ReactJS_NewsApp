@@ -7,29 +7,51 @@ import { Link } from "react-router-dom";
 
 export default function GeneralC(props) {
   const [data, setData] = useState([]);
-  const InternationalNews = async () => {
-    let data1  = await axios.get(
-      "https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=fa4fbad0ae5645a08bd2503bcd0b33c4"
+  const GeneralNews = async () => {
+    let { data } = await axios.get(
+      "https://newsapi.org/v2/top-headlines?country=in&category=general&apiKey=fa4fbad0ae5645a08bd2503bcd0b33c4"
     );
-    console.log("hhhhhhhhhhhhhhhhhhhh",data1)
-
-    let  data  = await axios.get(
-      "http://127.0.0.1:8000/news-api"
-    );
-    console.log(data.Newsdata)
-    setData(data.Newsdata);
-    
-    localStorage.setItem("interNationalNews", JSON.stringify(data.articles));
-    // const items=JSON.parse(localStorage.getItem('interNationalNews'))
-    // setData(items);
+    console.log("hhhhhhhhhhhhhhhhhhhh", data.articles);
+    //   // let  data  = await axios.get(
+    //   //   "http://127.0.0.1:8000/news-api"
+    //   // );
+    setData(data.articles);
+    localStorage.setItem("general", JSON.stringify(data.articles));
+    // const items = JSON.parse(localStorage.getItem('sports'));
+    //     setData(items);
   };
   useEffect(() => {
-    InternationalNews();
+    GeneralNews();
   }, []);
   const handleset = (e, val, i) => {
     props.setDetails(val);
     localStorage.setItem("details", JSON.stringify(val));
   };
+
+  // const [data, setData] = useState([]);
+  // const InternationalNews = async () => {
+  //   let {data1}  = await axios.get(
+  //     "https://newsapi.org/v2/top-headlines?country=in&apiKey=fa4fbad0ae5645a08bd2503bcd0b33c4"
+  //   );
+  //   console.log("hhhhhhhhhhhhhhhhhhhh",data1)
+
+  //   // let  data  = await axios.get(
+  //   //   "http://127.0.0.1:8000/news-api"
+  //   // );
+  //   console.log(data1.articles)
+  //   setData(data1.articles);
+
+  //   localStorage.setItem("interNationalNews", JSON.stringify(data1.articles));
+  //   // const items=JSON.parse(localStorage.getItem('interNationalNews'))
+  //   // setData(items);
+  // };
+  // useEffect(() => {
+  //   InternationalNews();
+  // }, []);
+  // const handleset = (e, val, i) => {
+  //   props.setDetails(val);
+  //   localStorage.setItem("details", JSON.stringify(val));
+  // };
   return (
     <>
       <div className="container mt-2  px-6 mx-auto border-8">

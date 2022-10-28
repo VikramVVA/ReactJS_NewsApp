@@ -1,21 +1,21 @@
 /* eslint-disable array-callback-return */
 import React from "react";
 import { useEffect, useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 
 import { Link } from "react-router-dom";
 
 export default function ScienceC(props) {
   const [data, setData] = useState([]);
   const politicsNews = async () => {
-    // let { data } = await axios.get(
-    //   "https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=fa4fbad0ae5645a08bd2503bcd0b33c4"
-    // );
+    let { data } = await axios.get(
+      "https://newsapi.org/v2/top-headlines?country=in&category=science&apiKey=fa4fbad0ae5645a08bd2503bcd0b33c4"
+    );
 
-    // setData(data.articles);
-    // localStorage.setItem("science", JSON.stringify(data.articles));
-    const items=JSON.parse(localStorage.getItem('science'));
-    setData(items);
+    setData(data.articles);
+    localStorage.setItem("science", JSON.stringify(data.articles));
+    // const items=JSON.parse(localStorage.getItem('science'));
+    // setData(items);
   };
   useEffect(() => {
     politicsNews();

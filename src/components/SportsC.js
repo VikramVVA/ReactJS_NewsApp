@@ -1,7 +1,7 @@
 /* eslint-disable array-callback-return */
 import React from 'react'
 import { useEffect ,useState} from 'react';
-// import axios from 'axios';
+import axios from 'axios';
 import {Link} from 'react-router-dom'
 
 
@@ -9,14 +9,14 @@ import {Link} from 'react-router-dom'
 export default function SportsC(props) {
    const [data, setData] = useState([]);
    const sportsNews = async () => {
-    // let  {data} = await axios.get(
-    //    "https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=fa4fbad0ae5645a08bd2503bcd0b33c4"
-    //  );
-    //  console.log(data.articles)
-    //  setData(data.articles);
-    //  localStorage.setItem("sports", JSON.stringify(data.articles));
-    const items = JSON.parse(localStorage.getItem('sports'));
-        setData(items);
+    let  {data} = await axios.get(
+       "https://newsapi.org/v2/top-headlines?country=in&category=sports&apiKey=fa4fbad0ae5645a08bd2503bcd0b33c4"
+     );
+     console.log("hhhhhhhhhhhhhhhhhhhh",data.articles)
+     setData(data.articles);
+     localStorage.setItem("sports", JSON.stringify(data.articles));
+    // const items = JSON.parse(localStorage.getItem('sports'));
+    //     setData(items);
    };
    useEffect(() => {
     sportsNews()
